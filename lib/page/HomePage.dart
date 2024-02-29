@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
             Align(
               alignment: Alignment.center,
               child: Image.asset(
-                Helper.getAssetName("MealMonkeyLogo.png", "virtual"),
+                Helper.getAssetName("Food_Monkey.png", "virtual"),
               ),
             ),
           ],

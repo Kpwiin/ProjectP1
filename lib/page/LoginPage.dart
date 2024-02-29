@@ -34,7 +34,7 @@ class Loginpage extends StatelessWidget {
             Align(
               alignment: Alignment.center,
               child: Image.asset(
-                Helper.getAssetName("MealMonkeyLogo.png", "virtual"),
+                Helper.getAssetName("Food_Monkey.png", "virtual"),
                 fit: BoxFit.cover,
               ),
             ),
