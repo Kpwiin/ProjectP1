@@ -1,16 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:monkeydosomething/const/colors.dart';
-import 'package:monkeydosomething/page/LoginPage.dart';
+import 'package:monkeydosomething/const/shop.dart';
+import 'package:provider/provider.dart';
 
 import 'page/HomePage.dart';
+import 'page/LoginPage.dart';
 import 'page/Login.dart';
 import 'page/SignUp.dart';
 import 'page/Home.dart';
 import 'page/Menu.dart';
 import 'page/info_shop.dart';
+import 'page/Cart_page.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => Shop()),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -53,14 +66,19 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: Consumer<Shop>(
+        builder: (context, shop, child) {
+          return HomePage();
+        },
+      ),
       routes: {
         Loginpage.routeName: (Context) => Loginpage(),
         Login.routeName: (Context) => Login(),
         SignUp.routeName: (Context) => SignUp(),
         Home.routeName: (Context) => Home(),
         Menu.routeName: (Context) => Menu(),
-        InfoShop.routeName: (Context) => InfoShop()
+        InfoShop.routeName: (Context) => InfoShop(),
+        Cartpage.routeName: (Context) => Cartpage(),
       },
     );
   }

@@ -1,33 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:monkeydosomething/const/colors.dart';
+import 'package:monkeydosomething/const/shop.dart';
 import 'package:monkeydosomething/page/info_shop.dart';
 import 'package:monkeydosomething/utils/helper.dart';
 import 'package:monkeydosomething/utils/Food.dart';
+import 'package:provider/provider.dart';
+
 
 import '../const/button.dart';
 import '../const/food_tlie.dart';
+
 import '../page/Food_detail_page.dart';
 
 class Menu extends StatelessWidget {
   static const routeName = "/Menu";
 
-  List foodMenu = [
-    Food(
-        name: "Hawaiian Pizza",
-        price: "10.00",
-        imagepath:
-            "/Users/apple/work/monkeydosomething/assets/images/real/pizza2.jpg",
-        rating: "4.7"),
-    Food(
-        name: "Margherita Pizza",
-        price: "15.00",
-        imagepath:
-            "/Users/apple/work/monkeydosomething/assets/images/real/pizza4.jpg",
-        rating: "4.9"),
-  ];
+ 
 
   void NavigateToFoodDetails(BuildContext context, Food food) {
+
+    final shop = context.read<Shop>();
+    // ignore: unused_local_variable
+    final foodMenu =shop.foodMenu;
+    
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => FoodDetailPage(food: food)),
@@ -38,6 +34,8 @@ class Menu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final shop = context.read<Shop>();
+    final foodMenu = shop.foodMenu;
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
@@ -48,6 +46,13 @@ class Menu extends StatelessWidget {
           color: Colors.grey[900],
         ),
         title: Text('Thailand'),
+
+        actions: [
+          IconButton(onPressed: () {
+            Navigator.pushNamed(context, '/Cartpage');
+          }, 
+          icon: Icon(Icons.shopping_cart))
+        ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "894316377755",
+    "project_id": "monkeyfood-75240",
+    "storage_bucket": "monkeyfood-75240.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:894316377755:android:328bf7f6bc926edc48783e",
+        "android_client_info": {
+          "package_name": "com.example.monkeydosomething"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIH4FUDdlc0oTB8P9mz8scOnVPyJ6zyNs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

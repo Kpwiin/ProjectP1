@@ -7,7 +7,7 @@ class CustomTextInput extends StatelessWidget {
 
   const CustomTextInput({
     Key? key,
-    required this.hintText,
+    required this.hintText, required bool obscureText, required Function(dynamic value) onSaved, required TextEditingController controller, required TextInputType textInputType,
   }) : super(key: key);
 
   @override

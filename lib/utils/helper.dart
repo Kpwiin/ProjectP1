@@ -16,6 +16,8 @@ class Helper {
     static TextTheme getTheme(BuildContext context){
       return Theme.of(context).textTheme;
     }
+
+  static void showSnackBar(BuildContext context, String s) {}
 }
 
       

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:monkeydosomething/const/button.dart';
+import 'package:monkeydosomething/const/shop.dart';
 import 'package:monkeydosomething/utils/Food.dart';
+import 'package:provider/provider.dart';
 
 import '../const/colors.dart';
 import '../utils/helper.dart';
@@ -31,6 +34,38 @@ class _FoodDetailsPageState extends State<FoodDetailPage> {
         quantityCount++;
       });
     });
+  }
+
+  void addToCart() {
+    if (quantityCount > 0) {
+      final shop = context.read<Shop>();
+
+      shop.addToCart(widget.food!, quantityCount);
+
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+          content: Text(
+            "Successfully added to cart",
+            style: TextStyle(color: Colors.white),
+            textAlign: TextAlign.center,
+          ),
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+
+                //pop to previous screen
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.done,
+              color: Colors.white,),
+            )
+          ],
+        ),
+      );
+    }
   }
 
   @override
@@ -103,7 +138,7 @@ class _FoodDetailsPageState extends State<FoodDetailPage> {
           ),
           Container(
             color: AppColor.orange,
-            padding: EdgeInsets.all(25),
+            padding: const EdgeInsets.all(25),
             child: Column(
               children: [
                 Row(
@@ -111,7 +146,7 @@ class _FoodDetailsPageState extends State<FoodDetailPage> {
                   children: [
                     Text(
                       "\฿" + widget.food!.price,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
@@ -120,12 +155,12 @@ class _FoodDetailsPageState extends State<FoodDetailPage> {
                     Row(
                       children: [
                         Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: Colors.white,
                             shape: BoxShape.circle,
                           ),
                           child: IconButton(
-                            icon: Icon(Icons.remove, color: Colors.black),
+                            icon: const Icon(Icons.remove, color: Colors.black),
                             onPressed: decrementQuantity,
                           ),
                         ),
@@ -134,7 +169,7 @@ class _FoodDetailsPageState extends State<FoodDetailPage> {
                           child: Center(
                             child: Text(
                               quantityCount.toString(),
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18,
@@ -143,18 +178,24 @@ class _FoodDetailsPageState extends State<FoodDetailPage> {
                           ),
                         ),
                         Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: Colors.white,
                             shape: BoxShape.circle,
                           ),
                           child: IconButton(
-                            icon: Icon(Icons.add, color: Colors.black),
+                            icon: const Icon(Icons.add, color: Colors.black),
                             onPressed: incrementQuantity,
                           ),
                         ),
                       ],
                     )
                   ],
+                ),
+                const SizedBox(height: 25),
+                Mybutton(
+                  text: "Add To cart",
+                  onTap: addToCart,
+                  Function: () {},
                 ),
               ],
             ),
